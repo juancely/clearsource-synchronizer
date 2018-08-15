@@ -6,4 +6,8 @@ A script to synchonize contacts and canditates IDs between Hubspot and Bullhorn 
 
 ### Default mode
 
-By default you start the script using **node index**
+By default you start the script using:
+
+ **node index**
+
+The script will only update the database
