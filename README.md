@@ -8,15 +8,15 @@ A script to synchonize contacts and canditates IDs between Hubspot and Bullhorn 
 
 By default you start the script using:
 
- **node index**
+ **MODE=DEFAULT node index**
 
-The script will only update the database.
+The script will only check the database.
 
 ### Load mode
 
 Start the script using:
 
- **MODE=LOAD node index**
+ **MODE=UPDATE node index**
 
 The script will load all contacts from Hubspot and update the database.
 
