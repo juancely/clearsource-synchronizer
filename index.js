@@ -194,16 +194,21 @@ const synchronize = async () => {
 
             sleep(1000);
 
-            // if((parseInt(i) + 1) >= contacts.length){
-            //   console.log("Synchronization ended, try to synchronize failed");
-            //
-            //   DBO.collection('synchronized_error')
-            //   .find({})
-            //   .toArray((e, synchro) => {
-            //
-            //   });
-            //
-            // }
+            if((parseInt(i) + 1) >= contacts.length){
+
+              console.log("Synchonization ended, Bye.");
+              DBO.close();
+              process.exit();
+
+              // console.log("Synchronization ended, try to synchronize failed");
+              //
+              // DBO.collection('synchronized_error')
+              // .find({})
+              // .toArray((e, synchro) => {
+              //
+              // });
+
+            }
 
           }
 
@@ -224,13 +229,20 @@ const synchronize = async () => {
 }
 
 const run = async () => {
+
+  console.log("RUN START");
+
   if(process.env.MODE){
 
     if(process.env.MODE == "DEFAULT"){
 
+      console.log("RUN ON DEFAULT MODE");
+
       synchronize();
 
     }else if(process.env.MODE == "UPDATE"){
+
+      console.log("RUN ON UPDATE MODE");
 
       deleteCollection('synchronize_hubspot_contacts', (e, deleted) => {
 
@@ -257,6 +269,8 @@ const run = async () => {
       });
 
     }else if(process.env.MODE == "CLEAN"){
+
+      console.log("RUN ON CLEAN MODE");
 
       deleteCollection('synchronize_hubspot_contacts', (e, deleted) => {
 
@@ -317,7 +331,6 @@ MongoClient.connect(MongoUrl, { useNewUrlParser: true }, (e, db) => {
   if(e){
 
     console.log("Error loading database");
-    db.close();
     process.exit();
 
   }else if(db){
