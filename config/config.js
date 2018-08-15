@@ -2,19 +2,19 @@
 
 module.exports = {
   database: {
-    host    : "localhost"
-  , port    : 27017
-  , dbname  : "DB NAME"
+    host    : "celyramos.local"
+  , port    : 32768
+  , dbname  : "clearsource"
   }
 
 , bullhorn: {
-    client    : "YOUR CLIENT ID"
-  , secret    : "YOUR SECRET"
-  , username  : "YOUR USERNAME"
-  , password  : "YOUR PASSWORD"
+    client    : "3025fef7-a040-430c-98c8-8152af082bd8"
+  , secret    : "YKYCtXYG4nwoln9ku6LBEuJ9"
+  , username  : "clearsource.rest"
+  , password  : "HubspotConnector@12"
   }
 
 , hubspot : {
-    api_key   : "API KEY"
+    api_key   : "80f0e067-bf1e-489e-a02e-b88de3215b14"
   }
 }

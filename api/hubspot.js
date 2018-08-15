@@ -12,8 +12,9 @@ const
 , API_KEY     = Config.hubspot.api_key
 ;
 
-const GetContacts = async () => {
-  let options = {
+const GetContacts = async (cb) => {
+
+  const options = {
     method: "GET"
   , uri   : API_URL + "/contacts/v1/lists/all/contacts/all"
   , qs    : {
@@ -27,67 +28,67 @@ const GetContacts = async () => {
   , json  : true
   }
 
-  let
-    Contacts  = null
-  ;
+  let error, contacts;
 
   await rp(options)
     .then(async results => {
 
-      Contacts = results;
+      contacts = results;
 
-      while(Contacts["vid-offset"] && Contacts["has-more"]){
-        options.qs['vidOffset'] = Contacts["vid-offset"];
+      while(contacts["vid-offset"] && contacts["has-more"]){
+        options.qs['vidOffset'] = contacts["vid-offset"];
         await rp(options)
           .then(results => {
-            // console.log(results);
+            
             if(results['contacts']){
               const c = results['contacts']
               for (let i in c) {
-                Contacts['contacts'].push(c[i]);
+                contacts['contacts'].push(c[i]);
               }
             }
 
-            Contacts["vid-offset"] = results["vid-offset"];
-            Contacts["has-more"] = results["has-more"] ? results["has-more"] : false;
+            contacts["vid-offset"] = results["vid-offset"];
+            contacts["has-more"] = results["has-more"] ? results["has-more"] : false;
 
           })
-          .catch(error => {
-            return error;
+          .catch(e => {
+            error = e;
           })
         ;
       }
+
     })
-    .catch(error => {
-      return error;
+    .catch(e => {
+      error = e;
     })
   ;
 
-  if(Contacts && Contacts['contacts']){
+  if(contacts && contacts['contacts']){
 
-    Contacts = Contacts['contacts'];
+    contacts = contacts['contacts'];
 
-    for(let i in Contacts){
+    for(let i in contacts){
 
-      if(Contacts[i].vid && Contacts[i].properties && Contacts[i].properties.email && Contacts[i].properties.email.value){
+      if(contacts[i].vid && contacts[i].properties && contacts[i].properties.email && contacts[i].properties.email.value){
         const
-          vid    = Contacts[i].vid
-        , email  = Contacts[i].properties.email.value
+          vid    = contacts[i].vid
+        , email  = contacts[i].properties.email.value
         ;
 
-        Contacts[i] = {
+        contacts[i] = {
           id    : vid
         , email : email
         }
 
       }else{
-        delete(Contacts[i]);
+        delete(contacts[i]);
       }
 
     }
   }
 
-  return Contacts;
+  await cb(error, contacts);
+
 }
 
 module.exports = {
