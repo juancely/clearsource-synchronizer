@@ -10,4 +10,20 @@ By default you start the script using:
 
  **node index**
 
-The script will only update the database
+The script will only update the database.
+
+### Load mode
+
+Start the script using:
+
+ **LOAD=true node index**
+
+The script will load all contacts from Hubspot and update the database.
+
+### Clean mode
+
+Start the script using:
+
+ **CLEAN=true node index**
+
+The script will delete database, load all contacts from Hubspot and update the database.
