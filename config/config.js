@@ -4,17 +4,17 @@ module.exports = {
   database: {
     host    : "localhost"
   , port    : 27017
-  , dbname  : "YOUR_DATABASE_NAME"
+  , dbname  : "clearsource"
   }
 
 , bullhorn: {
-    client    : "YOUR_CLIENT_ID"
-  , secret    : "YOUR_SECRET"
-  , username  : "YOUR_USERNAME"
-  , password  : "YOUR_PASSWORD"
+    client    : "3025fef7-a040-430c-98c8-8152af082bd8"
+  , secret    : "YKYCtXYG4nwoln9ku6LBEuJ9"
+  , username  : "clearsource.rest"
+  , password  : "HubspotConnector@12"
   }
 
 , hubspot : {
-    api_key   : "YOUR_API_KEY"
+    api_key   : "80f0e067-bf1e-489e-a02e-b88de3215b14"
   }
 }

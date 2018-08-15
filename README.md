@@ -16,7 +16,7 @@ The script will only update the database.
 
 Start the script using:
 
- **LOAD=true node index**
+ **MODE=LOAD node index**
 
 The script will load all contacts from Hubspot and update the database.
 
@@ -24,6 +24,6 @@ The script will load all contacts from Hubspot and update the database.
 
 Start the script using:
 
- **CLEAN=true node index**
+ **MODE=CLEAN node index**
 
 The script will delete database, load all contacts from Hubspot and update the database.
