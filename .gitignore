@@ -1,2 +1,9 @@
+# ignore all logs
+*.log
+
+# ignore OSX .DS_Store
+.DS_Store
+
+# ignore for node JS
 node_modules
 package-lock.json
